@@ -6,7 +6,6 @@
 <title>OBSERVATOIRE DU PARCOURS USAGERS — Département 49</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-  <script src="https://docs.getgrist.com/grist-plugin-api.js"></script>
 <style>
   :root {
     --blue: #1e22ae;
@@ -171,6 +170,26 @@ font-weight: 800;
   .tag:hover { border-color: var(--blue-mid); color: var(--blue); }
   .tag.active { background: var(--blue); border-color: var(--blue); color: white; font-weight: 500; }
   .tag:not(.active) { background: white; border-color: var(--border); color: var(--text-soft); font-weight: normal; }
+
+  /* ── Filtres Accueil physique : une couleur par dimension ── */
+  #tab-physique .filter-group:has(.tag[data-filter]) {
+    --dim: var(--text-soft);
+    padding: 3px 8px 3px 4px;
+    border: 1px solid color-mix(in srgb, var(--dim) 35%, white);
+    border-radius: 24px;
+  }
+  #tab-physique .filter-group:has(.tag[data-filter="domaine"]) { --dim: var(--blue); }
+  #tab-physique .filter-group:has(.tag[data-filter="type"])    { --dim: #0f766e; }
+  #tab-physique .filter-group:has(.tag[data-filter="dga"])     { --dim: #7c3aed; }
+
+  #tab-physique .filter-group:has(.tag[data-filter]) .filter-label {
+    background: var(--dim);
+    color: white;
+    padding: 3px 9px;
+    border-radius: 20px;
+  }
+  #tab-physique .tag[data-filter]:not(.active):hover { border-color: var(--dim); color: var(--dim); }
+  #tab-physique .tag[data-filter].active { background: var(--dim); border-color: var(--dim); color: white; }
 
   .search-input {
     padding: 5px 28px 5px 30px;
